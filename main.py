@@ -40,7 +40,7 @@ while True:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE and gary_rect.bottom >= 300:
-                gary_gravity = -20.5
+                gary_gravity = -20.6
 
     if game_active:
 
@@ -64,6 +64,8 @@ while True:
 
         #collision
         if excel_rect.colliderect(gary_rect):
+            death_sound = pygame.mixer.Sound('Assets/metal-pipe-falling-sound-effect.mp3')
+            death_sound.play()
             bg_music.stop()
             bg_end = pygame.mixer.Sound('Assets/audiomass-output.mp3')
             bg_end.play()
