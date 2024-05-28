@@ -18,6 +18,7 @@ test_font = pygame.font.Font('Assets/Pixeltype.ttf', 50)
 
 sky_surface = pygame.image.load('Assets/Sky.png').convert()
 ground_surface = pygame.image.load('Assets/ground.png').convert()
+end_screen = pygame.image.load('Assets/smartsheetend.jpg')
 text_surface = test_font.render('Excel Documents Swerved:' + str(excel_jumps), False, 'Black')
 text_rect = text_surface.get_rect(center = (400,50))
 
@@ -64,8 +65,9 @@ while True:
 
         #collision
         if excel_rect.colliderect(gary_rect):
-            death_sound = pygame.mixer.Sound('Assets/metal-pipe-falling-sound-effect.mp3')
-            death_sound.play()
+            screen.fill((0,0,0))
+
+            screen.blit(end_screen,(0,0))
             bg_music.stop()
             bg_end = pygame.mixer.Sound('Assets/audiomass-output.mp3')
             bg_end.play()
