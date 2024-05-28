@@ -1,13 +1,21 @@
 import pygame
 from sys import exit
 
+def end_game():
+
+    screen.blit(end_screen, (0, 0))
+    bg_music.stop()
+    bg_end = pygame.mixer.Sound('Assets/audiomass-output.mp3')
+    bg_end.play()
+
+
 pygame.init()
 
 width = 800
 height = 400
 
 bg_music = pygame.mixer.Sound('Assets/Masterpiecev2.mp3')
-bg_music.play()
+
 excel_jumps = 0
 screen = pygame.display.set_mode((width,height))
 pygame.display.set_caption('SmartSheet Runner')
@@ -44,7 +52,7 @@ while True:
                 gary_gravity = -20.6
 
     if game_active:
-
+        bg_music.play()
         screen.blit(sky_surface, (0,0))
         screen.blit(ground_surface,(0,300))
 
@@ -65,12 +73,7 @@ while True:
 
         #collision
         if excel_rect.colliderect(gary_rect):
-            screen.fill((0,0,0))
-
-            screen.blit(end_screen,(0,0))
-            bg_music.stop()
-            bg_end = pygame.mixer.Sound('Assets/audiomass-output.mp3')
-            bg_end.play()
+            end_game()
             game_active = False
 
 
